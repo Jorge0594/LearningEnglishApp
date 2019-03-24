@@ -1,5 +1,7 @@
 package api.word;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,19 +12,21 @@ public class Word {
 	private String id;
 	private String word;
 	private String type;
-	private String subType;
+	private String meaning;
+	private List<String> subType;
 	private int nCorrect;
 	private int nFail;
 	private double percentCorrect;
 	private String comment;
 	
 	public Word(){}
-	
-	public Word(String id, String word, String type, String subType, int nCorrect, int nFail, double percentCorrect, String comment) {
+
+	public Word(String id, String word, String type, String meaning, List<String> subType, int nCorrect, int nFail, double percentCorrect, String comment) {
 		super();
 		this.id = id;
 		this.word = word;
 		this.type = type;
+		this.meaning = meaning;
 		this.subType = subType;
 		this.nCorrect = nCorrect;
 		this.nFail = nFail;
@@ -50,15 +54,23 @@ public class Word {
 		return type;
 	}
 
+	public String getMeaning() {
+		return meaning;
+	}
+
+	public void setMeaning(String meaning) {
+		this.meaning = meaning;
+	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
 
-	public String getSubType() {
+	public List<String> getSubType() {
 		return subType;
 	}
 
-	public void setSubType(String subType) {
+	public void setSubType(List<String> subType) {
 		this.subType = subType;
 	}
 
@@ -96,7 +108,7 @@ public class Word {
 
 	@Override
 	public String toString() {
-		return "Word [id=" + id + ", word=" + word + ", type=" + type + ", subType=" + subType + ", nCorrect=" + nCorrect + ", nFail=" + nFail + ", percentCorrect=" + percentCorrect + ", comment=" + comment + "]";
+		return "Word [id=" + id + ", word=" + word + ", type=" + type + ", meaning=" + meaning + ", subType=" + subType + ", nCorrect=" + nCorrect + ", nFail=" + nFail + ", percentCorrect=" + percentCorrect + ", comment=" + comment + "]";
 	}
 
 	@Override
@@ -105,6 +117,7 @@ public class Word {
 		int result = 1;
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((meaning == null) ? 0 : meaning.hashCode());
 		result = prime * result + nCorrect;
 		result = prime * result + nFail;
 		long temp;
@@ -135,6 +148,11 @@ public class Word {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (meaning == null) {
+			if (other.meaning != null)
+				return false;
+		} else if (!meaning.equals(other.meaning))
+			return false;
 		if (nCorrect != other.nCorrect)
 			return false;
 		if (nFail != other.nFail)
@@ -158,5 +176,5 @@ public class Word {
 			return false;
 		return true;
 	}
-	
+
 }
