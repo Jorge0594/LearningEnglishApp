@@ -25,7 +25,7 @@ public class WordController {
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity<Word> addWord(@RequestBody Word word){
 		
 		word.setId(null);
@@ -38,7 +38,7 @@ public class WordController {
 		return new ResponseEntity<Word>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<List<Word>> getAllWords(){
 		return new ResponseEntity<List<Word>>(wordRepository.findAll(), HttpStatus.OK);
 	}
