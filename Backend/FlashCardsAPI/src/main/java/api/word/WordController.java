@@ -28,6 +28,10 @@ public class WordController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity<Word> addWord(@RequestBody Word word){
 		
+		if(wordRepository.findWordByWordIgnoreCase(word.getWord()) != null){
+			return new ResponseEntity<Word>(HttpStatus.CONFLICT);
+		}
+		
 		word.setId(null);
 		word.setnCorrect(0);
 		word.setnFail(0);
@@ -35,7 +39,7 @@ public class WordController {
 		
 		wordRepository.save(word);
 		
-		return new ResponseEntity<Word>(HttpStatus.OK);
+		return new ResponseEntity<Word>(word, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)

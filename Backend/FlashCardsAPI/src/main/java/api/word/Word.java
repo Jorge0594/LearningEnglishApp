@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import api.views.MeaningView;
+
 @Document(collection = "word")
 public class Word {
 	
@@ -12,7 +14,7 @@ public class Word {
 	private String id;
 	private String word;
 	private String type;
-	private String meaning;
+	private List<MeaningView> meaning;
 	private List<String> subType;
 	private int nCorrect;
 	private int nFail;
@@ -21,7 +23,7 @@ public class Word {
 	
 	public Word(){}
 
-	public Word(String id, String word, String type, String meaning, List<String> subType, int nCorrect, int nFail, double percentCorrect, String comment) {
+	public Word(String id, String word, String type, List<MeaningView> meaning, List<String> subType, int nCorrect, int nFail, double percentCorrect, String comment) {
 		super();
 		this.id = id;
 		this.word = word;
@@ -54,11 +56,11 @@ public class Word {
 		return type;
 	}
 
-	public String getMeaning() {
+	public List<MeaningView> getMeaning() {
 		return meaning;
 	}
 
-	public void setMeaning(String meaning) {
+	public void setMeaning(List<MeaningView> meaning) {
 		this.meaning = meaning;
 	}
 
@@ -115,16 +117,7 @@ public class Word {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((meaning == null) ? 0 : meaning.hashCode());
-		result = prime * result + nCorrect;
-		result = prime * result + nFail;
-		long temp;
-		temp = Double.doubleToLongBits(percentCorrect);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((subType == null) ? 0 : subType.hashCode());
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + ((word == null) ? 0 : word.hashCode());
 		return result;
 	}
@@ -138,36 +131,10 @@ public class Word {
 		if (getClass() != obj.getClass())
 			return false;
 		Word other = (Word) obj;
-		if (comment == null) {
-			if (other.comment != null)
-				return false;
-		} else if (!comment.equals(other.comment))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (meaning == null) {
-			if (other.meaning != null)
-				return false;
-		} else if (!meaning.equals(other.meaning))
-			return false;
-		if (nCorrect != other.nCorrect)
-			return false;
-		if (nFail != other.nFail)
-			return false;
-		if (Double.doubleToLongBits(percentCorrect) != Double.doubleToLongBits(other.percentCorrect))
-			return false;
-		if (subType == null) {
-			if (other.subType != null)
-				return false;
-		} else if (!subType.equals(other.subType))
-			return false;
-		if (type == null) {
-			if (other.type != null)
-				return false;
-		} else if (!type.equals(other.type))
 			return false;
 		if (word == null) {
 			if (other.word != null)
@@ -176,5 +143,7 @@ public class Word {
 			return false;
 		return true;
 	}
+
+	
 
 }
