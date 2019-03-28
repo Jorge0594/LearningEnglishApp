@@ -28,9 +28,11 @@ public class WordController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity<Word> addWord(@RequestBody Word word){
 		
-		if(wordRepository.findWordByWordIgnoreCase(word.getWord()) != null){
+		if(wordRepository.findWordByWordAndUserAllIgnoreCase(word.getWord(), word.getUser()) != null){
 			return new ResponseEntity<Word>(HttpStatus.CONFLICT);
 		}
+		
+		word.setUser("jorge");//Replace later
 		
 		word.setId(null);
 		word.setnCorrect(0);

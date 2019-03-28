@@ -4,5 +4,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface WordRepository extends MongoRepository<Word, String> {
 	
-	Word findWordByWordIgnoreCase(String word);
+	Word findWordByWordAndUserAllIgnoreCase(String word, String user);
 }
