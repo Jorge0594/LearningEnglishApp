@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
       New Word
@@ -10,5 +10,18 @@
 </ion-header>
 
 <ion-content>
+  <form [formGroup] ="wordform">
+      <ion-label>Word type</ion-label>
+      <ion-select formControlName = "type" [(ngModel)] = "wordType" value = "none" okText="Okay" cancelText="Cancel">
+        <ion-select-option value="brown">Phrasal verb</ion-select-option>
+        <ion-select-option value="blonde">Expression</ion-select-option>
+        <ion-select-option value="black">Normal word</ion-select-option>
+        <ion-select-option value="red">Other</ion-select-option>
+      </ion-select>
+      <!--ion-input *ngIf= "phrasal verb" formControlName = "subType"></ion-input>
+      <ion-input formControlName = "meaning"></ion-input-->
+  </form>
+
+  
 
 </ion-content>

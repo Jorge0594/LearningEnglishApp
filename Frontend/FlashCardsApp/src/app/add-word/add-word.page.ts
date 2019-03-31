@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-word',
@@ -7,6 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddWordPage {
 
-  constructor() { }
+  wordform: FormGroup;
+  wordType = "";
+  
+
+  constructor(private formBuilder: FormBuilder) {
+    this.wordform = this.formBuilder.group({
+      type: ['', Validators.required],
+    });
+  }
 
 }
