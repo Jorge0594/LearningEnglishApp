@@ -26,21 +26,23 @@
         </ion-select>
       </ion-item>
       <div *ngIf = "wordType == 'phrasalverb' || wordType == 'expression'" class = "input-content">
-          <ion-label class = "input-label">Word subtype</ion-label>
+          <ion-label  class = "input-label">Word subtype</ion-label>
           <ion-item class = "inputs">
-            <ion-input placeholder = "Get, up, make or whatever"></ion-input>
+            <ion-input formControlName = "subtype" placeholder = "Get, up, make or whatever"></ion-input>
           </ion-item>
       </div>
       <div class = "input-content">
-          <ion-label class = "input-label">Meaning</ion-label>
+          <ion-label class = "input-label">Meanings</ion-label>
+          <ion-item *ngFor = "let item of meaningList" class = "meanings" color = "meaning">{{item.meaning}}</ion-item>
           <ion-item class = "inputs">
-            <ion-button id = "addmeaning-button" shape = "round" size = "largue">Add a meaning</ion-button>
+            <ion-button id = "addmeaning-button" (click) = "addMeaning()" shape = "round" size = "largue">Add a meaning</ion-button>
           </ion-item>
+          
       </div>
       <div class = "input-content">
           <ion-label class = "input-label">Comment</ion-label>
           <ion-item class = "inputs">
-            <ion-input placeholder = "Add a comment"></ion-input>
+            <ion-input formControlName = "comment" placeholder = "Add a comment"></ion-input>
           </ion-item>
       </div>
     </ion-list>
