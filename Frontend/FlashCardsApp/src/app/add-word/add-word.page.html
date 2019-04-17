@@ -9,16 +9,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form [formGroup] ="wordform">
+<ion-content padding>
+  <form [formGroup] ="wordform" id = "form-container">
     <ion-list>
-      <ion-label class = "input-label">Word</ion-label>
       <ion-item class = "inputs">
-        <ion-input formControlName = "word" placeholder = "write a word or phrase"></ion-input>
+        <ion-input formControlName = "word" placeholder = "Word or phrase"></ion-input>
       </ion-item>
       <ion-item class = "inputs">
         <ion-label>Word type</ion-label>
-        <ion-select formControlName = "type" [(ngModel)] = "wordType" value = "none" okText="Select" cancelText="Cancel">
+        <ion-select formControlName = "wordtype" [(ngModel)] = "wordType" value = "none" okText="Select" cancelText="Cancel">
           <ion-select-option value="phrasalverb">Phrasal verb</ion-select-option>
           <ion-select-option value="expression">Expression</ion-select-option>
           <ion-select-option value="normalword">Normal word</ion-select-option>
@@ -26,13 +25,11 @@
         </ion-select>
       </ion-item>
       <div *ngIf = "wordType == 'phrasalverb' || wordType == 'expression'" class = "input-content">
-          <ion-label  class = "input-label">Word subtype</ion-label>
           <ion-item class = "inputs">
-            <ion-input formControlName = "subtype" placeholder = "Get, up, make or whatever"></ion-input>
+            <ion-input formControlName = "subtype" placeholder = "Word subtype. Eg: Get, up, make or whatever"></ion-input>
           </ion-item>
       </div>
       <div class = "input-content">
-          <ion-label class = "input-label">Meanings</ion-label>
           <ion-item *ngFor = "let item of meaningList" class = "meanings" color = "meaning">{{item.meaning}}</ion-item>
           <ion-item class = "inputs">
             <ion-button id = "addmeaning-button" (click) = "addMeaning()" shape = "round" size = "largue">Add a meaning</ion-button>
@@ -40,7 +37,6 @@
           
       </div>
       <div class = "input-content">
-          <ion-label class = "input-label">Comment</ion-label>
           <ion-item class = "inputs">
             <ion-input formControlName = "comment" placeholder = "Add a comment"></ion-input>
           </ion-item>

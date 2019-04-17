@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { WordModel } from '../model/word-model';
 import { HttpClientService } from './http-client.service';
-import { map } from '../../../node_modules/rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

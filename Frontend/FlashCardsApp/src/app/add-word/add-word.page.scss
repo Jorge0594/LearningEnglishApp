@@ -4,7 +4,14 @@
 }
 
 .inputs{
-    background: green;
+    width: 100%;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    --background: grey;
+    --border-radius: 20px;
+    --highlight-height: 0px;
 }
 
 .input-content{
@@ -16,13 +23,26 @@
 }
 
 .summit-button{
-    max-width: 95%;
+    max-width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
 .summit-button ion-button{
     width: 100%;
+    min-height: 60px;
 }
-.meanings --background{
-    background: rgb(218, 213, 213)!important;
+
+.meanings{
+    padding: 6px;
+}
+
+.invalid-message{
+    color:#e74c3c;
+    margin:0px;
+}
+
+.input-invalid{
+    background:#e74c3c;
+    margin-bottom: 0px;
+    
 }

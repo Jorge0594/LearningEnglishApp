@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { AddWordPage } from './add-word.page';
 
+import { MatInputModule } from '@angular/material';
+
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    MatInputModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],

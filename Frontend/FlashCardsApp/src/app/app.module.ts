@@ -11,9 +11,12 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { WordService } from './services/word.service';
-import { HttpModule } from '../../node_modules/@angular/http';
+import { HttpModule } from '@angular/http';
 import { HttpClientService } from './services/http-client.service';
+import { ErrorHandlerService } from './services/errorhandler.service';
 import { HttpClientModule } from '@angular/common/http';
+
+import { MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatInputModule
   ],
   providers: [
     StatusBar,
@@ -32,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     WordService,
     HttpModule,
     HttpClientService,
+    ErrorHandlerService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
