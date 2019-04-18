@@ -22,23 +22,14 @@ export class AddWordPage {
   private word: WordModel;
   private id: number;
   private meaningList: Array<MeaningModel> = [];
-
-  private validatorMessages = {
-    'word': [
-      { type: 'required', message: 'Word is required.' },
-      { type: 'validWord', message: 'The word has already taken.' }
-    ],
-    'wordtype': [
-      { type: 'required', message: 'Type is required.' }
-    ]
-  }
-  
+  private errorMessage;
+  private hasError = false;
 
   constructor(private formBuilder: FormBuilder, private alertCtrl: AlertController, private wordService: WordService, private navCtrl: NavController, private errorhandler: ErrorHandlerService) {
     this.id = 0;
 
     this.wordform = this.formBuilder.group({
-      word: ['', [Validators.required], WordValidator.validWord],
+      word: ['', Validators.required],
       wordtype: ['', Validators.required],
       subtype:[''],
       comment:['']
@@ -88,15 +79,31 @@ export class AddWordPage {
   }
 
   summitWord(): void{
+    this.hasError = false;
+
     let subTypeArray: Array<string> = [];
     let word: WordModel;
+
     subTypeArray = this.wordform.controls['subtype'].value.split(",");
     word = new WordModel("none", this.wordform.controls['word'].value, "jorge", this.wordform.controls['wordtype'].value, subTypeArray, this.meaningList, 0, 0, 0, this.wordform.controls['comment'].value);
 
-    this.wordService.newWord(word).subscribe(
-      response => this.navCtrl.navigateForward('/home'),
-      error => console.error("ERROR:" + this.errorhandler.generateErrorMessage("AddWordPage", error.status))
-    )
+    if(this.wordform.invalid == true) {
+      this.hasError = true;
+      this.errorMessage = this.validatorError();
+    } else {
+      this.wordService.newWord(word).subscribe(
+        response => this.navCtrl.navigateForward('/home'),
+        error => {
+          this.hasError = true;
+          this.errorMessage = this.errorhandler.generateErrorMessage("AddWordPage", error.status);
+        }
+      )
+    }
+    
+  }
+
+  validatorError():string{
+    if(this.wordform.get('word').hasError('required') || this.wordform.get('wordtype').hasError('required')) return "Please check that you have fill all the required inputs."
   }
 
 }

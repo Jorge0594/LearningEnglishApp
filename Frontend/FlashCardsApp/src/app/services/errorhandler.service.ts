@@ -14,15 +14,13 @@ export class ErrorHandlerService {
   constructor() { }
 
   generateErrorMessage(functionName: string, errorNumber: number): string{
-
-    console.log("ERROR HANDLER: "  + functionName + " NUMBER " + errorNumber)
     let error = this.errors_message.find(err => err.type == errorNumber);
     let errorMesssage;
 
     if (error == undefined){
-      errorMesssage = "[NOT FOUND]" + functionName + " not found.";
+      errorMesssage = functionName + " not found.";
     } else {
-      errorMesssage = error.status + functionName + error.message;
+      errorMesssage = functionName + error.message;
     }
 
     return errorMesssage;
