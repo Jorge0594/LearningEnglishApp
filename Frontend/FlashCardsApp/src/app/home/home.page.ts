@@ -9,7 +9,7 @@ import { NavController } from '@ionic/angular';
 export class HomePage {
 
   public options =  [
-    {title: "Flash Cards", link: "/"},
+    {title: "Flash Cards", link: "/flash-card-menu"},
     {title: "Add new word", link: "/add-word"}
   ];
 

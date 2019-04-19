@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { WordModel } from '../model/word-model';
 import { MeaningModel } from '../model/meaning-model';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, LoadingController } from '@ionic/angular';
 import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 import { WordService } from '../services/word.service';
 import { WordValidator } from '../validators/word.validator';
@@ -25,7 +25,8 @@ export class AddWordPage {
   private errorMessage;
   private hasError = false;
 
-  constructor(private formBuilder: FormBuilder, private alertCtrl: AlertController, private wordService: WordService, private navCtrl: NavController, private errorhandler: ErrorHandlerService) {
+  constructor(private formBuilder: FormBuilder, private alertCtrl: AlertController, private wordService: WordService, private navCtrl: NavController,
+    private errorhandler: ErrorHandlerService, private loadingCtrl: LoadingController) {
     this.id = 0;
 
     this.wordform = this.formBuilder.group({
@@ -78,21 +79,36 @@ export class AddWordPage {
    return await alert.present();
   }
 
+  async createLoading(){
+    let loading = await this.loadingCtrl.create({
+      message: 'The word has been added correctly.',
+      duration: 1500,
+      spinner: null
+    });
+
+    return await loading.present();
+  }
+
   summitWord(): void{
     this.hasError = false;
 
     let subTypeArray: Array<string> = [];
     let word: WordModel;
 
-    subTypeArray = this.wordform.controls['subtype'].value.split(",");
+    if(this.wordform.controls['wordtype'].value == "phrasalverb" || this.wordform.controls['wordtype'].value == "expression"){
+      subTypeArray = this.wordform.controls['subtype'].value.split(",");
+    }
+   
     word = new WordModel("none", this.wordform.controls['word'].value, "jorge", this.wordform.controls['wordtype'].value, subTypeArray, this.meaningList, 0, 0, 0, this.wordform.controls['comment'].value);
-
     if(this.wordform.invalid == true) {
       this.hasError = true;
       this.errorMessage = this.validatorError();
     } else {
       this.wordService.newWord(word).subscribe(
-        response => this.navCtrl.navigateForward('/home'),
+        response => {
+          this.createLoading();
+          this.navCtrl.navigateForward('/home');
+        },
         error => {
           this.hasError = true;
           this.errorMessage = this.errorhandler.generateErrorMessage("AddWordPage", error.status);

@@ -15,7 +15,8 @@ const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
-  { path: 'add-word', loadChildren: './add-word/add-word.module#AddWordPageModule' }
+  { path: 'add-word', loadChildren: './add-word/add-word.module#AddWordPageModule' },
+  { path: 'flash-card-menu', loadChildren: './flash-card-menu/flash-card-menu.module#FlashCardMenuPageModule' }
 ];
 
 @NgModule({

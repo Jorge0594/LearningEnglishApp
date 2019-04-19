@@ -49,6 +49,12 @@ public class WordController {
 		return new ResponseEntity<List<Word>>(wordRepository.findAll(), HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/{word}", method = RequestMethod.GET)
+	public ResponseEntity<Word> findWord(@PathVariable String word){
+		//Modify the user when the restSecurity will have been implemented.
+		return new ResponseEntity<Word>(wordRepository.findWordByWordAndUserAllIgnoreCase(word, "jorge"), HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/subtype/{subtype}", method = RequestMethod.GET)
 	public ResponseEntity<List<Word>> findBySubtype(@PathVariable String subtype){
 		Query query = new Query();
