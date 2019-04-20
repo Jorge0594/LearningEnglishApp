@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>flashCard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides class="card-content">
+    <ion-slide class="card-slide" *ngFor="let slide of numSlides">
+      <div class="flip-container" (click)="flip()" [class.flipped]="flipped">
+        <div class="flipper">
+          <div class="front">
+            FRONT
+          </div>
+          <div class="back">
+            BACK
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>

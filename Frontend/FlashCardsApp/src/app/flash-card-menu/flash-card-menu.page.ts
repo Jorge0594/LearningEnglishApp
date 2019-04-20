@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlashCardMenuPage implements OnInit {
 
+  private options = [
+    10,
+    20,
+    30,
+    40,
+    50,
+    "infinite"
+]
   constructor() { }
 
   ngOnInit() {

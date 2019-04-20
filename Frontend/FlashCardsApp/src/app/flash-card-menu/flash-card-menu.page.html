@@ -1,9 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>flashCardMenu</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    <ion-title>Number of FlashCards</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [scrollEvents]="true">
+  <ion-button [routerLink] = "'/flash-card/' + option" *ngFor = "let option of options" class = "options">{{option}} Cards</ion-button>
 
 </ion-content>
