@@ -2,9 +2,18 @@ package api.word;
 
 import java.util.List;
 
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.sample;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
+
+
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +60,7 @@ public class WordController {
 	
 	@RequestMapping(value = "/{word}", method = RequestMethod.GET)
 	public ResponseEntity<Word> findWord(@PathVariable String word){
-		//Modify the user when the restSecurity will have been implemented.
+		
 		return new ResponseEntity<Word>(wordRepository.findWordByWordAndUserAllIgnoreCase(word, "jorge"), HttpStatus.OK);
 	}
 	
@@ -60,6 +69,17 @@ public class WordController {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("subType").is(subtype));
 		return new ResponseEntity<List<Word>>(mongoTemplate.find(query, Word.class), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/random/{number}", method = RequestMethod.GET)
+	public ResponseEntity<List<Word>> getNumberOfWords(@PathVariable int number){
+		
+		Aggregation agg = newAggregation(
+			match(Criteria.where("user").is("jorge")),//Modify the user when the restSecurity will have been implemented.
+			sample(number)
+		);
+		
+		return new ResponseEntity<List<Word>>(mongoTemplate.aggregate(agg, Word.class, Word.class).getMappedResults(), HttpStatus.OK);
 	}
 
 }
