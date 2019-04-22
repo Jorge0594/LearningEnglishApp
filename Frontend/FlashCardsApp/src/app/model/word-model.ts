@@ -1,6 +1,7 @@
 import { MeaningModel } from './meaning-model';
 
 export class WordModel {
+
     constructor(public id:string, public word:string, public user:string, public type:string, public subType:Array<string>,
         public meaning:Array<MeaningModel>, public nCorrect:number, public nFail:number, public percent:number, public comment:string){
     }

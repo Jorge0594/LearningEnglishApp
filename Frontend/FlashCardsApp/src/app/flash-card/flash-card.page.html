@@ -9,14 +9,14 @@
 
 <ion-content>
   <ion-slides class="card-content">
-    <ion-slide class="card-slide" *ngFor="let slide of numSlides">
+    <ion-slide class="card-slide" *ngFor="let card of cardService.getCardList().getCardObjects()">
       <div class="flip-container" (click)="flip()" [class.flipped]="flipped">
         <div class="flipper">
           <div class="front">
-            FRONT
+            {{card?.front?.word}}
           </div>
           <div class="back">
-            BACK
+            {{card?.back?.word}}
           </div>
         </div>
       </div>

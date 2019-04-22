@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '../../../node_modules/@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { CardService } from '../services/card-service.service';
 
 @Component({
   selector: 'app-flash-card',
@@ -12,13 +13,20 @@ export class FlashCardPage {
   private flipped = false;
   private numSlides : Array<number> = [];
 
-  constructor(private route: ActivatedRoute) { 
-    this.route.params.subscribe(
+  constructor(private route: ActivatedRoute, private cardService: CardService) { 
+    /*this.route.params.subscribe(
       params => {
         this.cardsNum = params['num'];
-        for(let i = 0; i < this.cardsNum; i++) this.numSlides.push(i + 1);
       }
-    );
+    );*/
+
+    
+    this.cardService.getCardList().getCardObjects().forEach( card => {
+      console.log("WRITE");
+      console.log(card);
+    });
+
+    console.log(this.cardService.getCardList().getCardObjects().length)
   }
 
   flip(){

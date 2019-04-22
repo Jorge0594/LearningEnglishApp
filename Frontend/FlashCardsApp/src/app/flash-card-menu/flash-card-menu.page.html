@@ -8,6 +8,6 @@
 </ion-header>
 
 <ion-content [scrollEvents]="true">
-  <ion-button [routerLink] = "'/flash-card/' + option" *ngFor = "let option of options" class = "options">{{option}} Cards</ion-button>
+  <ion-button [routerLink] = "'/flash-card/' + option" *ngFor = "let option of options" (click) = "load(option)" class = "options">{{option}} Cards</ion-button>
 
 </ion-content>

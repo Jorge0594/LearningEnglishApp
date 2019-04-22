@@ -25,7 +25,7 @@ export class AddWordPage {
   private errorMessage;
   private hasError = false;
 
-  constructor(private formBuilder: FormBuilder, private alertCtrl: AlertController, private wordService: WordService, private navCtrl: NavController,
+  constructor(private formBuilder: FormBuilder, private alertCtrl: AlertController, private wordService: WordService<WordModel>, private navCtrl: NavController,
     private errorhandler: ErrorHandlerService, private loadingCtrl: LoadingController) {
     this.id = 0;
 

@@ -17,6 +17,7 @@ import { ErrorHandlerService } from './services/errorhandler.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatInputModule } from '@angular/material';
+import { CardService } from './services/card-service.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +38,7 @@ import { MatInputModule } from '@angular/material';
     HttpModule,
     HttpClientService,
     ErrorHandlerService,
+    CardService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
