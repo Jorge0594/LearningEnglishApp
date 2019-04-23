@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Flash Cards</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--ion-slides class="card-content">
+    <ion-slide class="card-slide" *ngFor="let card of cards"-->
+      <div *ngFor="let card of cards">
+        <div class="flip-container" (click)="flip()" [class.flipped]="flipped">
+          <div class="flipper">
+            <div class="front">
+              {{card?.front?.word}}
+            </div>
+            <div class="back">
+              <p class="meanings" *ngFor="let meaning of card?.back?.meanings">{{meaning.meaning}}
+                <br>
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    <!--/ion-slide>
+  </ion-slides-->
+
+</ion-content>

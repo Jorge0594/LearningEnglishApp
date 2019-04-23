@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { WordModel } from '../model/word-model';
-import { MeaningModel } from '../model/meaning-model';
+import { WordModel } from '../../model/word-model';
+import { MeaningModel } from '../../model/meaning-model';
 import { AlertController, NavController, LoadingController } from '@ionic/angular';
 import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
-import { WordService } from '../services/word.service';
-import { WordValidator } from '../validators/word.validator';
-import { ErrorHandlerService } from '../services/errorhandler.service';
+import { WordService } from '../../services/word.service';
+import { WordValidator } from '../../validators/word.validator';
+import { ErrorHandlerService } from '../../services/errorhandler.service';
 
 @Component({
   selector: 'app-add-word',
