@@ -20,8 +20,11 @@ import { MatInputModule } from '@angular/material';
 import { CardService } from './services/card-service.service';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [
+    AppComponent
+  ],
+  entryComponents: [
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
