@@ -31,4 +31,13 @@ export class WordService <T extends Object>{
       )
     )
   }
+
+  getAllWords(user: string):Observable<T>{
+    return this.http.get(BASE_URL).pipe(
+      map(
+        response => response,
+        error => console.error(error)
+      )
+    )
+  }
 }

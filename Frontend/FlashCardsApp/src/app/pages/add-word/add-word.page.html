@@ -18,13 +18,13 @@
       <ion-item class = "inputs">
         <ion-label>Word type</ion-label>
         <ion-select formControlName = "wordtype" [(ngModel)] = "wordType" value = "none" okText="Select" cancelText="Cancel">
-          <ion-select-option value="phrasalverb">Phrasal verb</ion-select-option>
+          <ion-select-option value="phrasal verb">Phrasal verb</ion-select-option>
           <ion-select-option value="expression">Expression</ion-select-option>
-          <ion-select-option value="normalword">Normal word</ion-select-option>
+          <ion-select-option value="normal word">Normal word</ion-select-option>
           <ion-select-option value="other">Other</ion-select-option>
         </ion-select>
       </ion-item>
-      <div *ngIf = "wordType == 'phrasalverb' || wordType == 'expression'" class = "input-content">
+      <div *ngIf = "wordType == 'phrasal verb' || wordType == 'expression'" class = "input-content">
           <ion-item class = "inputs">
             <ion-input formControlName = "subtype" placeholder = "Word subtype. Eg: Get, up, make or whatever"></ion-input>
           </ion-item>

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Your words</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card class="word-content-card" *ngFor="let word of wordList">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6"><strong>{{word.word}}</strong></ion-col>
+              <ion-col class="word-type" size="6">{{word?.type}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="4">
+                <ion-icon class="checkbox-icon" name="checkbox"></ion-icon> {{word?.nCorrect}}</ion-col>
+              <ion-col size="4">
+                <ion-icon class="close-circle-icon" name="close-circle"></ion-icon> {{word?.nFail}}</ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option (click)="removeWord(item)" color="danger">
+            <ion-icon name="trash"></ion-icon> DELETE</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-card>
+
+  </ion-list>
+
+</ion-content>

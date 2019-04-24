@@ -95,7 +95,7 @@ export class AddWordPage {
     let subTypeArray: Array<string> = [];
     let word: WordModel;
 
-    if(this.wordform.controls['wordtype'].value == "phrasalverb" || this.wordform.controls['wordtype'].value == "expression"){
+    if(this.wordform.controls['wordtype'].value == "phrasal verb" || this.wordform.controls['wordtype'].value == "expression"){
       subTypeArray = this.wordform.controls['subtype'].value.split(",");
     }
    
