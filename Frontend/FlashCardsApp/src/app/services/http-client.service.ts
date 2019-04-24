@@ -34,4 +34,13 @@ export class HttpClientService <T extends Object>{
         }
     ));
   }
+
+  delete(url:any){
+    return this.http.delete<T>((BASE_URL + url)).pipe(
+      map(
+        response => {
+          return response;
+        }
+    ));
+  }
 }

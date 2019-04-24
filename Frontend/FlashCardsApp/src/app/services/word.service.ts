@@ -40,4 +40,13 @@ export class WordService <T extends Object>{
       )
     )
   }
+
+  deleteWord(wordId: string):Observable<T>{
+    return this.http.delete(BASE_URL + "delete/" + wordId).pipe(
+      map(
+        response => response,
+        error => console.error(error)
+      )
+    )
+  }
 }

@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 
 
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
-import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -80,6 +79,21 @@ public class WordController {
 		);
 		
 		return new ResponseEntity<List<Word>>(mongoTemplate.aggregate(agg, Word.class, Word.class).getMappedResults(), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Word> removeWord(@PathVariable String id){
+		
+		//Check that if the user logged has in their list the word which they want to delete.
+		Word word = wordRepository.findWordById(id);
+		
+		if(word == null){
+			return new ResponseEntity<Word>(HttpStatus.NOT_FOUND);
+		}
+		
+		wordRepository.delete(word);
+		
+		return new ResponseEntity<Word>(word, HttpStatus.OK);
 	}
 
 }
