@@ -16,8 +16,10 @@ import { HttpClientService } from './services/http-client.service';
 import { ErrorHandlerService } from './services/errorhandler.service';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatInputModule } from '@angular/material';
+import { MatInputModule, MatSnackBarModule } from '@angular/material';
 import { CardService } from './services/card-service.service';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { CardService } from './services/card-service.service';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule
   ],
   providers: [
     StatusBar,
