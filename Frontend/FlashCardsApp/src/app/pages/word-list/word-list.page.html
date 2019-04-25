@@ -10,7 +10,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-card class="word-content-card" *ngFor="let word of wordList">
+    <ion-card class="word-content-card" *ngFor="let word of wordService.getUserWords()">
       <ion-item-sliding>
         <ion-item>
           <ion-grid>

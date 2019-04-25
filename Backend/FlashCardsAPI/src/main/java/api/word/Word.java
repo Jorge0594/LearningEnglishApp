@@ -38,6 +38,17 @@ public class Word {
 		this.comment = comment;
 		this.user = user;
 	}
+	
+	public Word(String user, String word, String type, int nCorrect, int nFail, double percentCorrect, String comment) {
+		super();
+		this.user = user;
+		this.word = word;
+		this.type = type;
+		this.nCorrect = nCorrect;
+		this.nFail = nFail;
+		this.percentCorrect = percentCorrect;
+		this.comment = comment;
+	}
 
 	public String getId() {
 		return id;

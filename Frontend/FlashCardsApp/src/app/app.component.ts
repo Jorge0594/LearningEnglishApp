@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { WordService } from './services/word.service';
+import { WordModel } from './model/word-model';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +27,8 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private wordService: WordService<Array<WordModel>>
   ) {
     this.initializeApp();
   }
@@ -35,5 +38,16 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    if(this.wordService.getUserWords().length == 0){
+      console.log("ENTER HERE");
+      this.wordService.getAllWords("jorge").subscribe(
+        response => {
+          this.wordService.setUserWords(response);
+        }
+      )
+    }
   }
+
+
 }

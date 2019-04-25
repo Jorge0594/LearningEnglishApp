@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { WordModel } from '../model/word-model';
 import { HttpClientService } from './http-client.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CardModel } from '../model/card-model';
 
@@ -13,6 +13,8 @@ const BASE_URL = "word/";
 export class WordService <T extends Object>{
 
   constructor(private http: HttpClientService<T>) { }
+
+  private userWords: Array<WordModel> = [];
 
   newWord(word:T){
     return this.http.post(BASE_URL + "add", word).pipe(
@@ -48,5 +50,13 @@ export class WordService <T extends Object>{
         error => console.error(error)
       )
     )
+  }
+
+  getUserWords(){
+    return this.userWords;
+  }
+
+  setUserWords(words: Array<WordModel>){
+    this.userWords = words;
   }
 }

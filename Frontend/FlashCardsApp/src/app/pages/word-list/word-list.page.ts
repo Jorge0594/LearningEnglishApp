@@ -18,8 +18,7 @@ export class WordListPage {
 
     this.wordService.getAllWords("jorge").subscribe(
       response => {
-        this.wordList = response
-        this.auxList = response;
+        this.auxList = this.wordService.getUserWords();
       }
     );
   }
@@ -28,7 +27,7 @@ export class WordListPage {
     this.wordList = this.auxList;
   }
 
-  removeWord(word: WordModel) {//Change to Wordmodel
+  removeWord(word: WordModel) {
     let index = this.wordList.indexOf(word);
     this.wordList = this.wordList.filter(it => it.id != word.id)
 
@@ -42,7 +41,9 @@ export class WordListPage {
     snackBarRef.afterDismissed().subscribe((action) => {
       if (this.removed) {
         this.wordService.deleteWord(word.id).subscribe(
-          response => console.log("WORD " + word.word + " has been deleted")
+          response => {
+            this.wordService.setUserWords(this.wordService.getUserWords().filter(elem => elem.id != word.id));
+          }
         )
       }
       this.removed = true;
