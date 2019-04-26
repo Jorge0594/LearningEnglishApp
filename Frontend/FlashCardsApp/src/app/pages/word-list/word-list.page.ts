@@ -55,11 +55,14 @@ export class WordListPage {
         this.wordService.deleteWord(word.id).subscribe(
           response => {
             this.wordService.setUserWords(this.wordService.getUserWords().filter(it => it.id != word.id));
+            this.auxList = this.auxList.filter(elem => elem.id != word.id);
           }
         )
       }
       this.removed = true;
     });
+
+    
   }
 
   filterWords(event: any) {
