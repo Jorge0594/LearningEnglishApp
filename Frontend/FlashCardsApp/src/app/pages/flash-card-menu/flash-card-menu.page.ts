@@ -16,12 +16,20 @@ export class FlashCardMenuPage {
     30,
     40,
     50,
-    "infinite"
+    "All"
   ]
   constructor(private navCtrl: NavController, private cardService: CardService) { }
 
-  load(nCards: number) {
+  load(nCards: any) {
     this.cardService.cleanCardList();
-    this.navCtrl.navigateForward('/flash-card/' + nCards);
+
+    if(nCards == "All"){
+      console.log("Enter here")
+      this.navCtrl.navigateForward('/flash-card/' + 2147483647);
+    } else {
+      this.navCtrl.navigateForward('/flash-card/' + nCards);
+    }
+
+    
   }
 }

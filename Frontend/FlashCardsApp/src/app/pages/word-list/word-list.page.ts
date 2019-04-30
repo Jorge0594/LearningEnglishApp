@@ -43,7 +43,7 @@ export class WordListPage {
     let index = this.wordList.indexOf(word);
     this.wordList = this.wordList.filter(it => it.id != word.id)
 
-    let snackBarRef = this.snackBar.open("Word removed", "Undo", { duration: 3000 });
+    let snackBarRef = this.snackBar.open("Word removed", "Undo", { duration: 2000 });
 
     snackBarRef.onAction().subscribe(() => {
       this.removed = false;
