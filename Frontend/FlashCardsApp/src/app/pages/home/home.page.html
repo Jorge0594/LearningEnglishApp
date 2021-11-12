@@ -14,6 +14,12 @@
   <div class = "container">
     <ion-button (click) = "navigateTo(elem.link)" *ngFor = "let elem of options" class = "option-button">{{elem.title}}</ion-button>
   </div>
+
+  <div>
+    <ion-button [routerLink] = "'/login'">
+      GO LOGIN
+    </ion-button>
+  </div>
   
     
 </ion-content>

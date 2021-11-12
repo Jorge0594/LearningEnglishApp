@@ -40,7 +40,6 @@ export class AppComponent {
     });
 
     if(this.wordService.getUserWords().length == 0){
-      console.log("ENTER HERE");
       this.wordService.getAllWords("jorge").subscribe(
         response => {
           this.wordService.setUserWords(response);

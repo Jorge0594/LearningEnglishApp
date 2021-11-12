@@ -7,7 +7,8 @@ const routes: Routes = [
   { path: 'add-word', loadChildren: './pages/add-word/add-word.module#AddWordPageModule' },
   { path: 'flash-card-menu', loadChildren: './pages/flash-card-menu/flash-card-menu.module#FlashCardMenuPageModule' },
   { path: 'flash-card/:num', loadChildren: './pages/flash-card-exam/flash-card.module#FlashCardPageModule' },
-  { path: 'word-list', loadChildren: './pages/word-list/word-list.module#WordListPageModule' }
+  { path: 'word-list', loadChildren: './pages/word-list/word-list.module#WordListPageModule' },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' }
 ];
 
 @NgModule({
